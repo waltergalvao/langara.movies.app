@@ -23,20 +23,33 @@ class Poster extends Component {
     }
 
     render() {
-        const {classes} = this.props;
+        if (!this.props.titleData) {
+            return (
+                <div>Loading...</div>
+            );
+        }
+        const { classes } = this.props;
+        const {
+            poster_path,
+            title,
+            release_date,
+            popularity,
+            overview
+        } = this.props.titleData;
 
         return (
             <Card>
                 <Grid container>
-                    <Grid xs={4}>
+                    <Grid xs={4} item>
                         <CardMedia
                             className={classes.cover}
                             component="img"
-                            src="https://www.joblo.com/assets/images/joblo/posters/2019/01/IO-poster-1.jpg"
+                            src={ 'https://image.tmdb.org/t/p/original' + poster_path }
                             title="Live from space album cover"
                         />
                     </Grid>
                     <Grid xs={8}
+                          item
                           direction="column"
                           justify="center"
                           alignItems="center"
@@ -44,19 +57,14 @@ class Poster extends Component {
                         <CardContent>
                             <Box textAlign="center" marginBottom={2}>
                                 <Typography component="h5" variant="h5">
-                                    IO
+                                    { title }
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    Release date: 2008-06-05 | Popularity: 23.401
+                                    Release date: { release_date } | Popularity: { popularity }
                                 </Typography>
                             </Box>
-                            <Typography variant="body" color="textSecondary">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
+                            <Typography color="textSecondary">
+                                { overview }
                             </Typography>
                         </CardContent>
                     </Grid>

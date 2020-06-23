@@ -15,6 +15,7 @@ import Movies from "./components/Movies";
 import Box from "@material-ui/core/Box";
 import SearchResults from "./components/SearchResults";
 import TVShows from "./components/TvShows";
+import SearchService from "./api/services/searchService"
 
 const useStyles = theme => ({
     root: {
@@ -74,7 +75,6 @@ class App extends Component {
                 <Container>
                     <Banner/>
 
-
                     <Box marginTop={8}>
                         <Grid container justify="center" alignItems="center">
                             <Grid item xs={4}>
@@ -105,7 +105,6 @@ class App extends Component {
                     <Box border={1} marginTop={8}>
                         <Box boxShadow={3}>
                             <Tabs
-                                fixed={false}
                                 variant="fullWidth"
                                 className={classes.tabs}
                                 value={this.state.tabIndex}
@@ -119,16 +118,16 @@ class App extends Component {
                             </Tabs>
                         </Box>
 
-                        <Box padding={4}>
-                            <div className={classes.paper} hidden={this.state.tabIndex !== this.TABS.movies}>
-                              <Movies></Movies>
-                            </div>
-                            <div className={classes.paper} hidden={this.state.tabIndex !== this.TABS.search}>
-                              <SearchResults></SearchResults>
-                            </div>
-                            <div className={classes.paper} hidden={this.state.tabIndex !== this.TABS.tvShows}>
-                              <TVShows></TVShows>
-                            </div>
+                        <Box padding={4} hidden={this.state.tabIndex !== this.TABS.movies}>
+                          <Movies ></Movies>
+                        </Box>
+
+                        <Box padding={4} hidden={this.state.tabIndex !== this.TABS.search}>
+                            <SearchResults></SearchResults>
+                        </Box>
+
+                        <Box padding={4} hidden={this.state.tabIndex !== this.TABS.tvShows}>
+                            <TVShows></TVShows>
                         </Box>
                     </Box>
                 </Container>
