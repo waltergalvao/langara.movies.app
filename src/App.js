@@ -47,28 +47,27 @@ class App extends Component {
             search: {
                 query: '',
                 type: SEARCH_MULTI,
-            },
-            form: {
-                query: '',
-                type: SEARCH_MULTI,
             }
         };
 
+        this.search = () => { console.error("Implement search handler")};
         this.handleTabChange = this.handleTabChange.bind(this);
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     }
 
-    handleFormChange(field, value) {
-        this.setState(state => ({...state, form: { ...state.form, [field]: value }}));
+    handleSearchChange(field, value) {
+        this.setState(state => ({
+            ...state,
+            search: {
+                ...state.search,
+                [field]: value
+            }
+        }));
     }
 
     handleSearchSubmit(event) {
         event.preventDefault();
-
-        this.setState(state => ({
-            ...state,
-            search: state.form
-        }));
+        this.search();
     }
 
     handleTabChange(event, tabIndex) {
@@ -86,7 +85,7 @@ class App extends Component {
                 <Container>
                     <Banner/>
 
-                    <form onSubmit={(e) => this.handleSearchSubmit(e)}>
+                    <form onSubmit={(e) => { this.handleSearchSubmit(e) }}>
                         <Box marginTop={8}>
                             <Grid container justify="center" alignItems="center">
                                 <Grid item xs={4}>
@@ -95,7 +94,7 @@ class App extends Component {
                                         variant="outlined"
                                         fullWidth={true}
                                         name="query"
-                                        onChange={e => this.handleFormChange('query', e.target.value)}
+                                        onChange={e => this.handleSearchChange('query', e.target.value)}
                                     />
                                 </Grid>
                                 <Grid item>
@@ -105,8 +104,8 @@ class App extends Component {
                                             labelId="search-type-label"
                                             label="Search Type"
                                             name="type"
-                                            value={this.state.form.type}
-                                            onChange={e => this.handleFormChange('type', e.target.value)}
+                                            value={this.state.search.type}
+                                            onChange={e => this.handleSearchChange('type', e.target.value)}
                                         >
                                             <MenuItem value={SEARCH_MULTI}>Multi</MenuItem>
                                             <MenuItem value={SEARCH_MOVIES}>Movies</MenuItem>
@@ -144,7 +143,7 @@ class App extends Component {
                         </Box>
 
                         <Box padding={4} hidden={this.state.tabIndex !== this.TABS.search}>
-                            <Search {...this.state.search}></Search>
+                            <Search {...this.state.search} setSearchHandler={searchHandler => this.search = searchHandler}></Search>
                         </Box>
 
                         <Box padding={4} hidden={this.state.tabIndex !== this.TABS.tvShows}>
