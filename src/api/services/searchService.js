@@ -1,5 +1,5 @@
-import { client as api} from '../client';
-import { handleApiError } from '../errorHandler';
+import {client as api} from '../client';
+import {handleApiError} from '../errorHandler';
 import {MULTI} from "../../valueObjects/SearchType";
 
 export default {

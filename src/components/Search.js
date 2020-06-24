@@ -5,7 +5,7 @@ import Poster from './dumb/Poster';
 import SearchService from "../api/services/searchService";
 import Button from "@material-ui/core/Button";
 import {MULTI} from "../valueObjects/SearchType";
-import { Typography } from '@material-ui/core';
+import {Typography} from '@material-ui/core';
 
 
 const useStyles = theme => ({
@@ -80,7 +80,7 @@ class Search extends Component {
             return;
         }
 
-        return this.state.results.slice(startAt,stopAt).map(result => (
+        return this.state.results.slice(startAt, stopAt).map(result => (
             <Box marginBottom={2} key={result.id}>
                 <Poster {...{...result, title: (result.original_name || result.original_title)}}></Poster>
             </Box>
@@ -88,25 +88,27 @@ class Search extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
 
         return (
             <div>
-                { this.hasNotSearchedYet() && (
-                    <Typography variant="h4" align="center" className={classes.heading}>Please enter a search</Typography>
+                {this.hasNotSearchedYet() && (
+                    <Typography variant="h4" align="center" className={classes.heading}>Please enter a
+                        search</Typography>
                 )}
 
-                { this.isWaitingSubmit() && (
-                    <Typography variant="h4" align="center" className={classes.heading} >Please initiate a search</Typography>
+                {this.isWaitingSubmit() && (
+                    <Typography variant="h4" align="center" className={classes.heading}>Please initiate a
+                        search</Typography>
                 )}
 
-                { this.hasNoResults() && (
-                    <Typography variant="h4" align="center" className={classes.heading} >No results found</Typography>
+                {this.hasNoResults() && (
+                    <Typography variant="h4" align="center" className={classes.heading}>No results found</Typography>
                 )}
 
-                { this.results(0, 10) }
-                { this.state.showMore && this.results(10) }
-                { (!this.state.showMore && this.state.results.length > 10) && (
+                {this.results(0, 10)}
+                {this.state.showMore && this.results(10)}
+                {(!this.state.showMore && this.state.results.length > 10) && (
                     <Button variant="contained" color="primary" onClick={() => this.showMore()}>Show More</Button>
                 )}
             </div>

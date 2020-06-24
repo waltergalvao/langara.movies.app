@@ -1,5 +1,5 @@
-import { client as api} from '../client';
-import { handleApiError } from '../errorHandler';
+import {client as api} from '../client';
+import {handleApiError} from '../errorHandler';
 import {AIRING_TODAY} from "../../valueObjects/TvShowListType";
 
 export default {

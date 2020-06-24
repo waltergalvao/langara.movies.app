@@ -58,7 +58,7 @@ class Movies extends Component {
             return;
         }
 
-        return this.state.response.results.slice(startAt,stopAt).map(movie => (
+        return this.state.response.results.slice(startAt, stopAt).map(movie => (
             <Box marginBottom={2} key={movie.id}>
                 <Poster {...{...movie, title: movie.original_title}}></Poster>
             </Box>
@@ -66,7 +66,7 @@ class Movies extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
 
         return (
             <Box>
@@ -87,9 +87,9 @@ class Movies extends Component {
                     </FormControl>
                 </Box>
                 <Box mt={4}>
-                    { this.results(0, 10) }
-                    { this.state.showMore && this.results(10) }
-                    { !this.state.showMore && (
+                    {this.results(0, 10)}
+                    {this.state.showMore && this.results(10)}
+                    {!this.state.showMore && (
                         <Button variant="contained" color="primary" onClick={() => this.showMore()}>Show More</Button>
                     )}
                 </Box>

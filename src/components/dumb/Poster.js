@@ -39,7 +39,7 @@ class Poster extends Component {
                         <CardMedia
                             className={classes.cover}
                             component="img"
-                            src={ 'https://image.tmdb.org/t/p/original' + poster_path }
+                            src={'https://image.tmdb.org/t/p/original' + poster_path}
                             title="Live from space album cover"
                         />
                     </Grid>
@@ -52,14 +52,14 @@ class Poster extends Component {
                         <CardContent>
                             <Box textAlign="center" marginBottom={2}>
                                 <Typography component="h5" variant="h5">
-                                    { title }
+                                    {title}
                                 </Typography>
                                 <Typography variant="subtitle1" color="textSecondary">
-                                    Release date: { release_date } | Popularity: { popularity }
+                                    Release date: {release_date} | Popularity: {popularity}
                                 </Typography>
                             </Box>
                             <Typography color="textSecondary">
-                                { overview }
+                                {overview}
                             </Typography>
                         </CardContent>
                     </Grid>

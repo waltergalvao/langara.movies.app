@@ -1,5 +1,5 @@
-import { client as api} from '../client';
-import { handleApiError } from '../errorHandler';
+import {client as api} from '../client';
+import {handleApiError} from '../errorHandler';
 import {LATEST} from "../../valueObjects/MovieListType";
 
 export default {
