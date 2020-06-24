@@ -1,68 +1,83 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created for an assigment in React course from Langara College. The design was based on materials provided by the course.
 
-## Available Scripts
-
-In the project directory, you can run:
+This is not intended to be hosted online - if you do, please add attribution to TMDb [https://www.themoviedb.org/about/logos-attribution]
+# Running
 
 ### `yarn start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# The Assignment
 
-### `yarn test`
+For our assignment, we will be making a movies app with React. We will be using an open/public movies API to do this.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<span style="text-decoration: underline;">**Setup Steps:**</span>
 
-### `yarn build`
+1\. Go to **[https://www.themoviedb.org/](https://www.themoviedb.org/)** Register an account to get an API key.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2\. Create your React project
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<span style="text-decoration: underline;">**IMPORTANT (PLEASE READ):**</span>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**1\. Use v3 of the API and authenticate your requests using your API Key [https://developers.themoviedb.org/3](https://developers.themoviedb.org/3)**
 
-### `yarn eject`
+**2\. API endpoints to be used (all GET endpoints):**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Movies**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+*   **now playing**
+*   **popular**
+*   **top rated**
+*   **upcoming**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Search**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+*   **movie**
+*   **multi**
+*   **tv**
 
-## Learn More
+**TV**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+*   **airing today**
+*   **on the air**
+*   **popular**
+*   **top_rated**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**3\. Do NOT use any of the wrapper libraries to make requests to the API, instead use the native fetch function/axios npm package. Marks will be deducted if wrapper libraries are used.**
 
-### Code Splitting
+4\. Do NOT use react hooks. Use the traditional react class container component structure which I have covered in class.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+<span style="text-decoration: underline;">**Desired Functionality:**</span>
 
-### Analyzing the Bundle Size
+Create three tabs. The first and third tabs should fetch from the movie and tv endpoints respectively. There should be a dropdown box displayed with the sub type within that respective endpoint. Upon selecting another selection from that dropdown box, the list of results should update to reflect the updated response from the new query. Likewise, when selecting another tab the results list should update to display the updated media and search type. When the search results tab is clicked, it should initially display a message prompting the user to enter a search query term nothing is entered in the input box. When the user starts to enter a search query, it should prompt the user to initiate a search. If the search yields no results, there should be a corresponding message displayed for that. There should be a dropdown box in the search form which is used to modify the type of search being done.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+<span style="text-decoration: underline;">**Marking Scheme:**</span>
 
-### Making a Progressive Web App
+Overall Layout (4 points)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+*   the accuracy of the layout of all the different components/elements (search bar/button, tabs and article content renderings
 
-### Advanced Configuration
+Overall Functionality (8 points)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+*   API call, returning the correct information and dynamically displaying under the corresponding tab
+*   Search function working properly, yielding the correct response from the API and correctly displayed
+*   The appropriate prompt messages showing.
+*   No errors when switching between tabs
 
-### Deployment
+Code Quality (8 points)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+*   Implementation of proper React component structure and concepts
+*   Pre-established react best practices demonstrated in class
+*   Component reusability
+*   Code modularity and encapsulation
 
-### `yarn build` fails to minify
+BONUS (2 points)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+*   Implement pagination where it displays the first 10 results and then for the rest be on a second clickable page.
+
+<span style="text-decoration: underline;">**Submission Format:**</span>
+
+Please push your code to your GitHub account and submit a link to the repository to me.
+
+<span style="color: #cf2a27;">Late submissions will be deducted 5 points. Please submit your assignment before the deadline.</span>

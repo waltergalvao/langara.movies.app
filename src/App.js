@@ -50,7 +50,9 @@ class App extends Component {
             }
         };
 
-        this.search = () => { console.error("Implement search handler")};
+        this.search = () => {
+            console.error("Implement search handler")
+        };
         this.handleTabChange = this.handleTabChange.bind(this);
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     }
@@ -85,7 +87,9 @@ class App extends Component {
                 <Container>
                     <Banner/>
 
-                    <form onSubmit={(e) => { this.handleSearchSubmit(e) }}>
+                    <form onSubmit={(e) => {
+                        this.handleSearchSubmit(e)
+                    }}>
                         <Box marginTop={8}>
                             <Grid container justify="center" alignItems="center">
                                 <Grid item xs={4}>
@@ -139,15 +143,17 @@ class App extends Component {
                         </Box>
 
                         <Box padding={4} hidden={this.state.tabIndex !== this.TABS.movies}>
-                          <Movies ></Movies>
+                            <Movies/>
                         </Box>
 
                         <Box padding={4} hidden={this.state.tabIndex !== this.TABS.search}>
-                            <Search {...this.state.search} setSearchHandler={searchHandler => this.search = searchHandler}></Search>
+                            <Search
+                                {...this.state.search}
+                                setSearchHandler={searchHandler => this.search = searchHandler}/>
                         </Box>
 
                         <Box padding={4} hidden={this.state.tabIndex !== this.TABS.tvShows}>
-                            <TVShows></TVShows>
+                            <TVShows/>
                         </Box>
                     </Box>
                 </Container>
