@@ -13,9 +13,9 @@ import Select from '@material-ui/core/Select';
 import Banner from "./components/dumb/Banner";
 import Movies from "./components/Movies";
 import Box from "@material-ui/core/Box";
-import SearchResults from "./components/SearchResults";
+import Search from "./components/Search";
 import TVShows from "./components/TvShows";
-import SearchService from "./api/services/searchService"
+import {MOVIES as SEARCH_MOVIES, MULTI as SEARCH_MULTI, TV_SHOWS as SEARCH_TV_SHOWS} from "./valueObjects/SearchType";
 
 const useStyles = theme => ({
     root: {
@@ -40,24 +40,35 @@ class App extends Component {
         tvShows: 2,
     };
 
-    SEARCH = {
-        multi: 0,
-        movies: 1,
-        tvShows: 2,
-    };
-
     constructor(props) {
         super(props);
         this.state = {
             tabIndex: this.TABS.movies,
             search: {
                 query: '',
-                type: this.SEARCH.multi,
+                type: SEARCH_MULTI,
+            },
+            form: {
+                query: '',
+                type: SEARCH_MULTI,
             }
         };
 
-        // This binding is necessary to make `this` work in the callback
         this.handleTabChange = this.handleTabChange.bind(this);
+        this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    }
+
+    handleFormChange(field, value) {
+        this.setState(state => ({...state, form: { ...state.form, [field]: value }}));
+    }
+
+    handleSearchSubmit(event) {
+        event.preventDefault();
+
+        this.setState(state => ({
+            ...state,
+            search: state.form
+        }));
     }
 
     handleTabChange(event, tabIndex) {
@@ -75,32 +86,42 @@ class App extends Component {
                 <Container>
                     <Banner/>
 
-                    <Box marginTop={8}>
-                        <Grid container justify="center" alignItems="center">
-                            <Grid item xs={4}>
-                                <TextField id="standard-basic" label="Search" variant="outlined" fullWidth={true}/>
+                    <form onSubmit={(e) => this.handleSearchSubmit(e)}>
+                        <Box marginTop={8}>
+                            <Grid container justify="center" alignItems="center">
+                                <Grid item xs={4}>
+                                    <TextField
+                                        label="Search"
+                                        variant="outlined"
+                                        fullWidth={true}
+                                        name="query"
+                                        onChange={e => this.handleFormChange('query', e.target.value)}
+                                    />
+                                </Grid>
+                                <Grid item>
+                                    <FormControl variant="outlined" className={classes.formControl}>
+                                        <InputLabel id="search-type-label">Search Type</InputLabel>
+                                        <Select
+                                            labelId="search-type-label"
+                                            label="Search Type"
+                                            name="type"
+                                            value={this.state.form.type}
+                                            onChange={e => this.handleFormChange('type', e.target.value)}
+                                        >
+                                            <MenuItem value={SEARCH_MULTI}>Multi</MenuItem>
+                                            <MenuItem value={SEARCH_MOVIES}>Movies</MenuItem>
+                                            <MenuItem value={SEARCH_TV_SHOWS}>TV Shows</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item>
+                                    <Button variant="contained" type="submit" color="primary">
+                                        Search
+                                    </Button>
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <FormControl variant="outlined" className={classes.formControl}>
-                                    <InputLabel id="search-type-label">Search Type</InputLabel>
-                                    <Select
-                                        labelId="search-type-label"
-                                        label="Search Type"
-                                        value={this.state.search.type}
-                                    >
-                                        <MenuItem value={this.SEARCH.multi}>Multi</MenuItem>
-                                        <MenuItem value={this.SEARCH.movies}>Movies</MenuItem>
-                                        <MenuItem value={this.SEARCH.tvShows}>TV Shows</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Grid>
-                            <Grid item>
-                                <Button variant="contained" color="primary">
-                                    Search
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </Box>
+                        </Box>
+                    </form>
 
                     <Box border={1} marginTop={8}>
                         <Box boxShadow={3}>
@@ -123,7 +144,7 @@ class App extends Component {
                         </Box>
 
                         <Box padding={4} hidden={this.state.tabIndex !== this.TABS.search}>
-                            <SearchResults></SearchResults>
+                            <Search {...this.state.search}></Search>
                         </Box>
 
                         <Box padding={4} hidden={this.state.tabIndex !== this.TABS.tvShows}>

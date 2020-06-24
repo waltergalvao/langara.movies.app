@@ -1,18 +1,19 @@
 import { client as api} from '../client';
 import { handleApiError } from '../errorHandler';
-import {LATEST} from "../../valueObjects/MovieListType";
+import {MULTI} from "../../valueObjects/SearchType";
 
 export default {
     /**
-     * @param type  Refer to MovieListType.js
+     * @param type  Refer to SearchType.js
      * @param page
      * @returns {Promise<*>}
      */
-    async search(type = LATEST, page = 1) {
+    async paginate(query, type = MULTI, page = 1) {
         try {
-            const response = await api.get(`/movie/${type}`, {
+            const response = await api.get(`/search/${type}`, {
                 params: {
-                    page
+                    page,
+                    query
                 }
             });
 

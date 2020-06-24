@@ -4,12 +4,11 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Poster from './dumb/Poster';
 import tvShowService from "../api/services/tvShowService";
-import {POPULAR, TOP_RATED, AIRING_TODAY, ON_THE_AIR} from "../valueObjects/TvShowListType";
+import {AIRING_TODAY, ON_THE_AIR, POPULAR, TOP_RATED} from "../valueObjects/TvShowListType";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import Grid from "@material-ui/core/Grid";
 
 const useStyles = theme => ({
     formControl: {
