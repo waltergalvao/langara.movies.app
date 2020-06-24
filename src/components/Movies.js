@@ -60,7 +60,7 @@ class Movies extends Component {
 
         return this.state.response.results.slice(startAt,stopAt).map(movie => (
             <Box marginBottom={2} key={movie.id}>
-                <Poster titleData={{...movie, title: movie.original_title}}></Poster>
+                <Poster {...{...movie, title: movie.original_title}}></Poster>
             </Box>
         ));
     }

@@ -82,7 +82,7 @@ class Search extends Component {
 
         return this.state.results.slice(startAt,stopAt).map(result => (
             <Box marginBottom={2} key={result.id}>
-                <Poster titleData={{...result, title: (result.original_name || result.original_title)}}></Poster>
+                <Poster {...{...result, title: (result.original_name || result.original_title)}}></Poster>
             </Box>
         ));
     }

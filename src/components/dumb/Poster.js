@@ -23,19 +23,14 @@ class Poster extends Component {
     }
 
     render() {
-        if (!this.props.titleData) {
-            return (
-                <div>Loading...</div>
-            );
-        }
-        const { classes } = this.props;
         const {
+            classes,
             poster_path,
             title,
             release_date,
             popularity,
             overview
-        } = this.props.titleData;
+        } = this.props;
 
         return (
             <Card>
